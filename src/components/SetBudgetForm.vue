@@ -43,6 +43,7 @@ const setBudget = (_form: any) => {
       <Label>Set Budgets</Label>
       <Field
         :as="Input"
+        inputmode="numeric"
         type="number"
         name="budget"
         class="text-black"

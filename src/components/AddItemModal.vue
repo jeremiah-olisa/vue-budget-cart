@@ -21,8 +21,20 @@ import FloatingActionButton from './FloatingActionButton.vue'
 
 const fields = [
   { placeholder: 'Name of item you want to buy', type: 'text', label: 'Item Name', id: 'itemName' },
-  { placeholder: 'How many are you buying?', type: 'number', label: 'Unit', id: 'unit' },
-  { placeholder: 'Price per one item', type: 'number', label: 'Unit Price', id: 'unitPrice' }
+  {
+    placeholder: 'How many are you buying?',
+    type: 'number',
+    inputmode: 'numeric',
+    label: 'Unit',
+    id: 'unit'
+  },
+  {
+    placeholder: 'Price per one item',
+    type: 'number',
+    inputmode: 'numeric',
+    label: 'Unit Price',
+    id: 'unitPrice'
+  }
 ]
 
 interface IFormFields {
@@ -86,6 +98,7 @@ const addItem = (_form: any) => {
             :name="field.id"
             :id="field.id"
             :type="field.type"
+            :inputmode="field.inputmode"
             :placeholder="field.placeholder"
             class="col-span-3"
             :as="Input"
