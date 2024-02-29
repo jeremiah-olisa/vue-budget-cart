@@ -36,7 +36,7 @@ const fields = [
     inputmode: 'numeric',
     label: 'Quantity',
     id: 'quantity',
-    value: '1'
+    value: 1
   }
 ]
 
