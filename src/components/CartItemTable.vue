@@ -1,15 +1,4 @@
 <script setup lang="ts">
-import { ChevronDown } from 'lucide-vue-next'
-
-import { Button } from '@/components/ui/button'
-
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
-import { Input } from '@/components/ui/input'
 import {
   Table,
   TableBody,
@@ -18,13 +7,9 @@ import {
   TableHeader,
   TableRow
 } from '@/components/ui/table'
-import { formatCurrency } from '@/lib/utils'
 import { useAppStore } from '@/stores'
 
-const { items: data } = useAppStore()
-
-
-
+const { items: data, getItemTotal } = useAppStore()
 </script>
 
 <template>
@@ -43,9 +28,9 @@ const { items: data } = useAppStore()
           <template v-if="data.length > 0">
             <TableRow v-for="row in data" :key="row.id">
               <TableCell>{{ row.name }}</TableCell>
-              <TableCell>{{ formatCurrency(row.unitPrice) }}</TableCell>
+              <TableCell>{{ row.unitPrice }}</TableCell>
               <TableCell>{{ row.quantity.toLocaleString() }}</TableCell>
-              <TableCell>{{ formatCurrency(row.itemTotal()) }}</TableCell>
+              <TableCell>{{ getItemTotal(row.id) }}</TableCell>
             </TableRow>
           </template>
 

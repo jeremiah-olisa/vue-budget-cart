@@ -28,6 +28,17 @@ export const useAppStore = defineStore('cart', {
         setBudget(budget: number) {
             this.totalBudget = budget;
         },
+        clearCart() {
+            this.items.length = 0;
+        },
+        clearBudget() {
+            this.totalBudget = 0;
+        },
+        getItemTotal(id: number): number {
+            const item = this.items.find(c => c.id == id);
+
+            return (item?.unitPrice ?? 0) * (item?.quantity ?? 0)
+        },
     },
     persist: true
 });

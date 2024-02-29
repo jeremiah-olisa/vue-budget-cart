@@ -4,7 +4,7 @@ import CartPage from './pages/CartPage.vue'
 </script>
 
 <template>
-  <div class=" flex h-screen justify-center content-center">
+  <div class="flex h-screen justify-center content-center">
     <div class="w-9/12">
       <CartPage />
     </div>

@@ -2,8 +2,8 @@ import { computed, ref } from 'vue'
 import type { Component, VNode } from 'vue'
 import type { ToastProps } from '.'
 
-const TOAST_LIMIT = 2
-const TOAST_REMOVE_DELAY = 500000
+export const TOAST_LIMIT = 2
+export const TOAST_REMOVE_DELAY = 2000
 
 export type StringOrVNode =
   | string
@@ -57,7 +57,14 @@ interface State {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
-function addToRemoveQueue(toastId: string) {
+/**
+ * The function `addToRemoveQueue` adds a toast to a removal queue with a delay before removing it.
+ * @param {string} toastId - The `toastId` parameter is a unique identifier for a specific toast
+ * message that is being displayed to the user.
+ * @returns If the `toastId` is already in the `toastTimeouts` map, the function `addToRemoveQueue`
+ * will return without doing anything.
+ */
+function addToRemoveQueue(toastId: string, delay = TOAST_REMOVE_DELAY) {
   if (toastTimeouts.has(toastId))
     return
 
@@ -67,7 +74,7 @@ function addToRemoveQueue(toastId: string) {
       type: actionTypes.REMOVE_TOAST,
       toastId,
     })
-  }, TOAST_REMOVE_DELAY)
+  }, delay)
 
   toastTimeouts.set(toastId, timeout)
 }
@@ -80,6 +87,7 @@ function dispatch(action: Action) {
   switch (action.type) {
     case actionTypes.ADD_TOAST:
       state.value.toasts = [action.toast, ...state.value.toasts].slice(0, TOAST_LIMIT)
+      addToRemoveQueue(action.toast.id, 30000);
       break
 
     case actionTypes.UPDATE_TOAST:
@@ -103,9 +111,9 @@ function dispatch(action: Action) {
       state.value.toasts = state.value.toasts.map(t =>
         t.id === toastId || toastId === undefined
           ? {
-              ...t,
-              open: false,
-            }
+            ...t,
+            open: false,
+          }
           : t,
       )
       break

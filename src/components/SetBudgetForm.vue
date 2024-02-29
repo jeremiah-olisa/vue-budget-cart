@@ -3,7 +3,7 @@ import { useAppStore } from '@/stores'
 import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
 import { useToast } from './ui/toast'
-import { ErrorMessage, Field, Form } from 'vee-validate'
+import { ErrorMessage, Field, Form, type GenericObject, type SubmissionHandler } from 'vee-validate'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
@@ -21,14 +21,14 @@ const appStore = useAppStore()
 
 const { toast } = useToast()
 
-const setBudget = (_form: any) => {
+const setBudget: SubmissionHandler<GenericObject, GenericObject, unknown> = (_form, actions) => {
   if (!_form.budget) return
 
   appStore.setBudget(_form.budget)
-  // _form.resetForm()
+  actions.resetForm()
   toast({
     description: `Budget has been set to ${appStore.totalBudget}`,
-    variant: 'default'
+    variant: 'info'
   })
 }
 </script>
@@ -40,7 +40,7 @@ const setBudget = (_form: any) => {
     :validation-schema="schema"
   >
     <FormField name="budget">
-      <Label>Set Budgets</Label>
+      <Label>Set Budget</Label>
       <Field
         :as="Input"
         inputmode="numeric"
@@ -52,7 +52,7 @@ const setBudget = (_form: any) => {
       <ErrorMessage name="budget" class="text-red-500 text-sm" />
     </FormField>
     <div>
-      <Button class="w-full" type="submit"> Submit </Button>
+      <Button class="w-full" type="submit"> Set Budget </Button>
     </div>
   </Form>
   <div class="flex flex-wrap gap-4 justify-center">
@@ -61,15 +61,15 @@ const setBudget = (_form: any) => {
       class="flex flex-col gap-2 h-40 text-white rounded-xl shadow-md p-6 my-5 w-full bg-blue-950 bg-opacity-90 backdrop-filter backdrop-blur-lg"
     >
       <div class="font-semibold text-lg">Budget</div>
-      <div class="font-semibold text-5xl tracking-tight">
-        {{ formatCurrency(appStore.totalBudget) }}
+      <div class="font-semibold lg:text-5xl md:text-3xl text-2xl tracking-tight">
+        {{ formatCurrency(appStore.remainingBudget) }}
       </div>
       <div
         class="font-normal"
         v-if="appStore.totalBudget > 0"
         :class="{ 'text-red-600': appStore.remainingBudget <= appStore.totalBudget * 0.3 }"
       >
-        Remaining: {{ formatCurrency(appStore.remainingBudget) }}
+        Total Budget: {{ formatCurrency(appStore.totalBudget) }}
       </div>
     </div>
   </div>
