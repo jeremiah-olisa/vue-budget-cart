@@ -29,4 +29,5 @@ export const useAppStore = defineStore('cart', {
             this.totalBudget = budget;
         },
     },
+    persist: true
 });
