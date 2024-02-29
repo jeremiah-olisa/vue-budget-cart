@@ -17,7 +17,7 @@ const { clearBudget, clearCart } = useAppStore()
         viewBox="0 0 24 24"
         stroke-width="1.5"
         stroke="currentColor"
-        class="w-6 h-6 group-hover:rotate-90 transition transition-all duration-[0.6s]"
+        class="w-6 h-6 group-hover:rotate-90 transition transition-all duration-700"
       >
         <path
           stroke-linecap="round"
@@ -29,7 +29,7 @@ const { clearBudget, clearCart } = useAppStore()
     </div>
     <!-- sub left -->
     <div
-      class="absolute rounded-full transition-all duration-[0.2s] ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16 flex p-2 hover:p-3 bg-blue-300 scale-100 hover:bg-blue-400 text-white"
+      class="absolute rounded-full transition-all duration-700 ease-out scale-y-0 group-hover:scale-y-100 group-hover:-translate-x-16 flex p-2 hover:p-3 bg-blue-300 scale-100 hover:bg-blue-400 text-white"
     >
       <slot />
     </div>
@@ -37,14 +37,14 @@ const { clearBudget, clearCart } = useAppStore()
     <div
       title="Clear Cart"
       @click="clearCart()"
-      class="absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16 flex p-2 hover:p-3 bg-red-300 hover:bg-red-500 text-white"
+      class="absolute rounded-full transition-all duration-700 ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-16 flex p-2 hover:p-3 bg-red-300 hover:bg-red-500 text-white"
     >
       <Trash class="w-6 h-6 group-hover:scale-110 transition transition-all duration-700" />
     </div>
     <div
       title="Clear Budget"
       @click="clearBudget()"
-      class="absolute rounded-full transition-all duration-[0.2s] ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-14 group-hover:-translate-x-14 flex p-2 hover:p-3 bg-slate-600 hover:bg-slate-700 text-white"
+      class="absolute rounded-full transition-all duration-700 ease-out scale-x-0 group-hover:scale-x-100 group-hover:-translate-y-14 group-hover:-translate-x-14 flex p-2 hover:p-3 bg-slate-600 hover:bg-slate-700 text-white"
     >
       <BookX class="w-6 h-6 group-hover:scale-110 transition transition-all duration-700" />
     </div>

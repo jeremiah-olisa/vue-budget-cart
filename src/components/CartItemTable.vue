@@ -35,7 +35,7 @@ const { items: data, getItemTotal, removeItem } = useAppStore()
               <TableCell>{{ row.quantity.toLocaleString() }}</TableCell>
               <TableCell>{{ getItemTotal(row.id) }}</TableCell>
               <TableCell>
-                <Button @click="removeItem(row.id)" variant="outline" size="icon">
+                <Button @click="removeItem(row.id)" variant="destructive" size="icon">
                   <Trash class="w-4 h-4" /> </Button
               ></TableCell>
             </TableRow>

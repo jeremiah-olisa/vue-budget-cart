@@ -5,7 +5,9 @@ import { createPinia } from 'pinia'
 
 import piniaPluginPersistedState from "pinia-plugin-persistedstate"
 import App from './App.vue'
+import { inject } from '@vercel/analytics';
 
+inject()
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedState)
 
