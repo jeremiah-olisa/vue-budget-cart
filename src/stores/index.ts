@@ -39,6 +39,9 @@ export const useAppStore = defineStore('cart', {
 
             return (item?.unitPrice ?? 0) * (item?.quantity ?? 0)
         },
+        removeItem(id: number) {
+            this.items = this.items.filter(c => c.id !== id);
+        },
     },
     persist: true
 });

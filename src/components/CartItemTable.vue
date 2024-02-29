@@ -8,8 +8,10 @@ import {
   TableRow
 } from '@/components/ui/table'
 import { useAppStore } from '@/stores'
+import { Button } from './ui/button';
+import { Trash } from 'lucide-vue-next';
 
-const { items: data, getItemTotal } = useAppStore()
+const { items: data, getItemTotal, removeItem } = useAppStore()
 </script>
 
 <template>
@@ -22,6 +24,7 @@ const { items: data, getItemTotal } = useAppStore()
             <TableHead> Unit Price</TableHead>
             <TableHead> Quantity</TableHead>
             <TableHead> Total</TableHead>
+            <TableHead> Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -31,6 +34,10 @@ const { items: data, getItemTotal } = useAppStore()
               <TableCell>{{ row.unitPrice }}</TableCell>
               <TableCell>{{ row.quantity.toLocaleString() }}</TableCell>
               <TableCell>{{ getItemTotal(row.id) }}</TableCell>
+              <TableCell>
+                <Button @click="removeItem(row.id)" variant="outline" size="icon">
+                  <Trash class="w-4 h-4" /> </Button
+              ></TableCell>
             </TableRow>
           </template>
 
