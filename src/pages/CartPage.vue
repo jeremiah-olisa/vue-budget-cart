@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AddItemModal from '@/components/AddItemModal.vue'
 import CartItemTable from '@/components/CartItemTable.vue'
-import InstallPWAPropmt from '@/components/InstallPWAPropmt.vue';
+import InstallPWAPropmt from '@/components/InstallPWAPropmt.vue'
 import SetBudgetForm from '@/components/SetBudgetForm.vue'
 </script>
 

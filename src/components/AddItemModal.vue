@@ -65,7 +65,7 @@ const toggleModal = () => {
 }
 
 const addItem: SubmissionHandler<GenericObject, GenericObject, unknown> = (form, actions) => {
-  const cartItem = new CartItem(Date.now(), form.itemName, form.unitPrice, form.quantity)
+  const cartItem = new CartItem(Date.now().toString(), form.itemName, form.unitPrice, form.quantity)
   if (cartItem.itemTotal() < appStore.remainingBudget) {
     appStore.addItem(cartItem)
     actions.resetForm()

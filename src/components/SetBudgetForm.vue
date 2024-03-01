@@ -58,18 +58,29 @@ const setBudget: SubmissionHandler<GenericObject, GenericObject, unknown> = (_fo
   <div class="flex flex-wrap gap-4 justify-center">
     <!-- card 1 -->
     <div
-      class="flex flex-col gap-2 h-40 text-white rounded-xl shadow-md p-6 my-5 w-full bg-blue-950 bg-opacity-90 backdrop-filter backdrop-blur-lg"
+      class="flex flex-col gap-2 h-auto text-white rounded-xl shadow-md p-6 my-5 w-full bg-blue-950 bg-opacity-90 backdrop-filter backdrop-blur-lg"
     >
-      <div class="font-semibold text-lg">Budget</div>
-      <div class="font-semibold lg:text-5xl md:text-3xl text-2xl tracking-tight">
+      <div class="font-semibold text-lg">Remaining Budget</div>
+      <div class="text-wrap font-semibold lg:text-4xl md:text-3xl text-2xl tracking-tight">
         {{ formatCurrency(appStore.remainingBudget) }}
       </div>
-      <div
-        class="font-normal"
-        v-if="appStore.totalBudget > 0"
-        :class="{ 'text-red-600': appStore.remainingBudget <= appStore.totalBudget * 0.3 }"
-      >
-        Total Budget: {{ formatCurrency(appStore.totalBudget) }}
+      <div>
+        <div
+          class="text-wrap font-normal"
+          v-if="appStore.cartTotal > 0"
+          :class="{ 'text-red-600': appStore.remainingBudget <= appStore.totalBudget * 0.3 }"
+        >
+          Reserved Budget: {{ formatCurrency(appStore.cartTotal) }}
+        </div>
+        <div class="text-wrap font-normal" v-if="appStore.totalBudget > 0">
+          Total Budget: {{ formatCurrency(appStore.totalBudget) }}
+        </div>
+        <div class="text-wrap font-normal">
+          Select Items Total: {{ formatCurrency(appStore.selectItemsTotal) }}
+        </div>
+        <div class="text-wrap font-normal" v-if="appStore.selectedItemsDifference < appStore.totalBudget">
+          Select Items Difference: {{ formatCurrency(appStore.selectedItemsDifference) }}
+        </div>
       </div>
     </div>
   </div>
