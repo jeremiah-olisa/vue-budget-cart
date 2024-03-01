@@ -8,16 +8,13 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function valueUpdater<T extends Updater<any>>(updaterOrValue: T, ref: Ref) {
-  ref.value
-    = typeof updaterOrValue === 'function'
-      ? updaterOrValue(ref.value)
-      : updaterOrValue
+  ref.value = typeof updaterOrValue === 'function' ? updaterOrValue(ref.value) : updaterOrValue
 }
 
 export const formatCurrency = (amount: number | bigint) => {
   return new Intl.NumberFormat('en-NF', {
     style: 'currency',
     currency: 'NGN',
-    currencyDisplay: 'symbol',
+    currencyDisplay: 'symbol'
   }).format(amount)
 }

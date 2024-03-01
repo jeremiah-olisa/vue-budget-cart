@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import {
-  LogOut,
-Trash} from 'lucide-vue-next'
+import { LogOut, Trash } from 'lucide-vue-next'
 
 import { Button } from '@/components/ui/button'
 import {

@@ -8,8 +8,8 @@ import {
   TableRow
 } from '@/components/ui/table'
 import { useAppStore } from '@/stores'
-import { Button } from './ui/button';
-import { Trash } from 'lucide-vue-next';
+import { Button } from './ui/button'
+import { Trash } from 'lucide-vue-next'
 
 const { items: data, getItemTotal, removeItem } = useAppStore()
 </script>
